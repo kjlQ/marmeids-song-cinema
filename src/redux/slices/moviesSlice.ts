@@ -1,11 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit'
+import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {IMovie} from '../../types/types'
 
-
-export interface CounterState {
-    value: number
+interface initialStateType {
+    movies:IMovie[],
 }
 
-const initialState = {
+const initialState:initialStateType = {
     movies: [],
 }
 
@@ -13,7 +13,7 @@ export const moviesSlice = createSlice({
     name: 'counter',
     initialState,
     reducers: {
-        updateMovie: (state,action) => {
+        updateMovie(state,action:PayloadAction<IMovie[]>) {
             state.movies = action.payload
         }
     },
