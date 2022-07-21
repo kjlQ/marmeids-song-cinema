@@ -1,24 +1,95 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {IMovie} from '../../types/types'
+import axios from "axios";
 
-interface initialStateType {
-    movies:IMovie[],
+
+interface fetchType {
+    page: number,
+    results: IMovie[],
+    total_pages: number,
+    total_results: number,
 }
 
-const initialState:initialStateType = {
+interface params_type {
+    page: number,
+    sort_by: string,
+}
+
+interface initialStateType {
+    movies: IMovie[],
+    page: number,
+    sort_by: string,
+    loadNewMovies:boolean,
+    search_value:string,
+    loading: boolean,
+}
+
+export const getMovies:any = createAsyncThunk(
+'posts/getMovies',
+async (params: params_type) => {
+    const {page, sort_by} = params
+    let api_key = '6071c7f776d0e35fb4f1d54ec4be7272'
+    console.log(page, sort_by)
+    const {data} = await axios.get<fetchType>(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=${sort_by}&page=${page}`)
+    return data.results
+})
+
+const initialState: initialStateType = {
     movies: [],
+    page: 1,
+    sort_by: 'popularity.desc',
+    loadNewMovies:false,
+    search_value:'',
+    loading: true,
+
 }
 
 export const moviesSlice = createSlice({
     name: 'counter',
     initialState,
     reducers: {
-        updateMovie(state,action:PayloadAction<IMovie[]>) {
+        updateMovie(state, action: PayloadAction<IMovie[]>) {
             state.movies = action.payload
+        },
+
+        changePage(state, action: PayloadAction<number>) {
+            state.page = action.payload
+        },
+
+        changeSortBy(state, action:PayloadAction<string>) {
+            state.page = 1
+            state.sort_by = action.payload
+            state.loadNewMovies = true
+        },
+
+        searchMovie(state,action:PayloadAction<string>) {
+            state.search_value = action.payload
         }
+    },
+    extraReducers: (builder) => {
+
+        builder.addCase(getMovies.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(getMovies.fulfilled, (state, action) => {
+            console.log('action=>' , action)
+            if(!state.loadNewMovies) {
+                state.movies = [...state.movies,...action.payload]
+            }
+            else {
+                state.movies = action.payload
+                state.loadNewMovies = false
+            }
+
+            state.loading = false
+        })
+        builder.addCase(getMovies.rejected, (state, action) => {
+            state.loading = false
+        })
+
     },
 })
 
-export const { updateMovie } = moviesSlice.actions
+export const {updateMovie, changePage, changeSortBy , searchMovie } = moviesSlice.actions
 
 export default moviesSlice.reducer

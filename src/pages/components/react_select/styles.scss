@@ -1,0 +1,13 @@
+.filter {
+  &__option {
+    cursor: pointer !important;
+    color: #1b1b1b !important;
+    &--is-focused {
+      box-shadow: #333333;
+    }
+    &--is-selected {
+      background: #fff !important;
+      color: #ff1867 !important;
+    }
+  }
+}
