@@ -4,7 +4,7 @@ export const options:any = [
     { value: 'release_date.desc', label: 'Release date 🡣 ' },
     { value: 'release_date.asc', label: 'Release date🡡' },
     { value: 'revenue.desc', label: 'Revenue 🡣' },
-    { value: 'revenue.asc', label: 'Revenue.asc 🡡' },
+    { value: 'revenue.asc', label: 'Revenue 🡡' },
     { value: 'primary_release_date.desc', label: 'Primary release date 🡣' },
     { value: 'primary_release_date.asc', label: 'Primary release date 🡡' },
     { value: 'original_title.desc', label: 'Original title 🡣' },

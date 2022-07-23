@@ -19,11 +19,15 @@ const Movie:FC<IMovie> = ({poster_path,vote_average}) => {
     return (
         <div className="movies-item">
             <a href="void:javascript(0)">
-                <div className="star" style={{backgroundColor:vote_color()}}>
-                    <div className="rating" >
-                        <span>{vote_average}</span>
+                {
+                    vote_average > 0
+                        &&
+                    <div className="star" style={{backgroundColor:vote_color()}}>
+                        <div className="rating" >
+                            <span>{vote_average}</span>
+                        </div>
                     </div>
-                </div>
+                }
                 <img src={`https://image.tmdb.org/t/p/w200/${poster_path}`} alt=""/>
             </a>
         </div>

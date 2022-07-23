@@ -13,6 +13,7 @@ interface fetchType {
 interface params_type {
     page: number,
     sort_by: string,
+    search_value: string,
 }
 
 interface initialStateType {
@@ -27,10 +28,16 @@ interface initialStateType {
 export const getMovies:any = createAsyncThunk(
 'posts/getMovies',
 async (params: params_type) => {
-    const {page, sort_by} = params
+    const {page, sort_by , search_value } = params
     let api_key = '6071c7f776d0e35fb4f1d54ec4be7272'
-    console.log(page, sort_by)
-    const {data} = await axios.get<fetchType>(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=${sort_by}&page=${page}`)
+    function api_handler(){
+        if(search_value) {
+            return `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${search_value}&page=${page}`
+        } else {
+            return `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=${sort_by}&page=${page}`
+        }
+    }
+    const {data} = await axios.get<fetchType>(api_handler())
     return data.results
 })
 
@@ -64,6 +71,7 @@ export const moviesSlice = createSlice({
 
         searchMovie(state,action:PayloadAction<string>) {
             state.search_value = action.payload
+            state.loadNewMovies = true
         }
     },
     extraReducers: (builder) => {
