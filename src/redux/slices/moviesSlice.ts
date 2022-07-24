@@ -22,6 +22,7 @@ interface initialStateType {
     sort_by: string,
     loadNewMovies:boolean,
     search_value:string,
+    total_pages:number,
     loading: boolean,
 }
 
@@ -38,7 +39,8 @@ async (params: params_type) => {
         }
     }
     const {data} = await axios.get<fetchType>(api_handler())
-    return data.results
+    console.log(data)
+    return data
 })
 
 const initialState: initialStateType = {
@@ -47,6 +49,7 @@ const initialState: initialStateType = {
     sort_by: 'popularity.desc',
     loadNewMovies:false,
     search_value:'',
+    total_pages:0,
     loading: true,
 
 }
@@ -55,10 +58,6 @@ export const moviesSlice = createSlice({
     name: 'counter',
     initialState,
     reducers: {
-        updateMovie(state, action: PayloadAction<IMovie[]>) {
-            state.movies = action.payload
-        },
-
         changePage(state, action: PayloadAction<number>) {
             state.page = action.payload
         },
@@ -82,13 +81,13 @@ export const moviesSlice = createSlice({
         builder.addCase(getMovies.fulfilled, (state, action) => {
             console.log('action=>' , action)
             if(!state.loadNewMovies) {
-                state.movies = [...state.movies,...action.payload]
+                state.movies = [...state.movies,...action.payload.results]
             }
             else {
-                state.movies = action.payload
+                state.movies = action.payload.results
                 state.loadNewMovies = false
             }
-
+            state.total_pages = action.payload.total_pages
             state.loading = false
         })
         builder.addCase(getMovies.rejected, (state, action) => {
@@ -98,6 +97,6 @@ export const moviesSlice = createSlice({
     },
 })
 
-export const {updateMovie, changePage, changeSortBy , searchMovie } = moviesSlice.actions
+export const { changePage, changeSortBy , searchMovie } = moviesSlice.actions
 
 export default moviesSlice.reducer

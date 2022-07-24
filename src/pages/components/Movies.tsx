@@ -12,6 +12,7 @@ const Movies = () => {
     const sort_by = useAppSelector(state=>state.moviesReducer.sort_by)
     const loadNewMovies = useAppSelector(state=>state.moviesReducer.loadNewMovies)
     const search_value = useAppSelector(state=>state.moviesReducer.search_value)
+    const total_pages = useAppSelector(state=>state.moviesReducer.total_pages)
 
     const dispatch = useDispatch()
 
@@ -33,7 +34,7 @@ const Movies = () => {
                 {movies.map((item:IMovie)=>item.poster_path && item.backdrop_path && <Movie key={item.id} {...item} />)}
             </div>
             <button onClick={()=>dispatch(changePage(page+1))} className="show_more_btn">
-                <span>Discover more</span>
+                <span>{total_pages > page? 'Discover more':'no more results'}</span>
             </button>
         </div>
     )
