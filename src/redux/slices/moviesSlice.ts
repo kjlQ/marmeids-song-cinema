@@ -70,6 +70,7 @@ export const moviesSlice = createSlice({
 
         searchMovie(state,action:PayloadAction<string>) {
             state.search_value = action.payload
+            state.page = 1
             state.loadNewMovies = true
         }
     },

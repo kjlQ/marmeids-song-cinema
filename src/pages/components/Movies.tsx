@@ -33,7 +33,7 @@ const Movies = () => {
             <div className="movies">
                 {movies.map((item:IMovie)=>item.poster_path && item.backdrop_path && <Movie key={item.id} {...item} />)}
             </div>
-            <button onClick={()=>dispatch(changePage(page+1))} className="show_more_btn">
+            <button onClick={()=>dispatch(changePage(page+1))} className={total_pages > page?'show_more_btn' : 'show_more_btn disable'}>
                 <span>{total_pages > page? 'Discover more':'no more results'}</span>
             </button>
         </div>

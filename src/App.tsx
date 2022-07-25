@@ -2,6 +2,9 @@ import React, {useEffect , useState } from 'react';
 import './App.scss'
 import './buttons.scss'
 import Home from "./pages/Home";
+import MoviePage from './pages/MoviePage'
+
+import { Routes , Route } from "react-router-dom";
 import { getMovies } from './redux/slices/moviesSlice'
 
 import {useAppSelector} from "./hook"
@@ -17,10 +20,11 @@ function App() {
 
     return (
         <div className={theme === 'black' ? 'App black_theme' : 'App white_theme'}>
-            <div className="container">
-                <Header theme={theme} setTheme={setTheme} />
-                <Home/>
-            </div>
+            <Header theme={theme} setTheme={setTheme} />
+            <Routes>
+                <Route path="/" element={<Home />  } />
+                <Route path="/movie/:id" element={<MoviePage />  } />
+            </Routes>
         </div>
     );
 }
