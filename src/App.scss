@@ -45,10 +45,15 @@
         text-decoration: none;
         color: white;
         font-weight: bold;
+        cursor: unset;
       }
       li {
         margin: 10px;
         list-style: none;
+        cursor: pointer;
+        &:hover {
+          color: #de0a26;
+        }
       }
     }
     &_container {
@@ -74,6 +79,7 @@
       margin-top: 20px;
       .filter {
         .search_input {
+          position: relative;
           input {
             border-radius: 5px;
             width: 96%;
@@ -84,6 +90,14 @@
             border-width: 1px;
             margin:10px 0;
             padding-left:10px;
+          }
+          .cross {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            right: 5px;
+            top: 35%;
+            cursor: pointer;
           }
         }
         &_container {

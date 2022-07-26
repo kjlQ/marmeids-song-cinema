@@ -3,6 +3,7 @@ import './App.scss'
 import './buttons.scss'
 import MoviesPage from "./pages/Home";
 import MoviePage from './pages/MoviePage'
+import MainPage from './pages/MainPage'
 
 import { Routes , Route } from "react-router-dom";
 import { getMovies } from './redux/slices/moviesSlice'
@@ -22,6 +23,7 @@ function App() {
         <div className={theme === 'black' ? 'App black_theme' : 'App white_theme'}>
             <Header theme={theme} setTheme={setTheme} />
             <Routes>
+                <Route path="/" element={<MainPage />  } />
                 <Route path="/movies" element={<MoviesPage />  } />
                 <Route path="/movie/:id" element={<MoviePage />  } />
             </Routes>
