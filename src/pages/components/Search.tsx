@@ -7,9 +7,13 @@ import debounce from "lodash.debounce";
 const Search = () => {
     const [value, setValue] = React.useState<string>('');
     const dispatch = useDispatch()
+    const {search_value} = useAppSelector(state=>state.moviesReducer)
     const handleSearch = useCallback(
         debounce((str : string)=>dispatch(searchMovie(str)),400),[],
     )
+    React.useEffect(()=> {
+        setValue(search_value)
+    },[])
     const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
         handleSearch(e.target.value)

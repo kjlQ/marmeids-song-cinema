@@ -31,16 +31,43 @@
 .App {
   min-height: 100vh;
   transition: 0.5s;
-  .theme_color {
-    z-index: 1;
+  .header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
     position: fixed;
-    top: 20px;
-    right: 0;
+    z-index: 2;
+    background-color: #1b1b1b;
+    border-bottom: 1px solid #808080;
+    &_routes {
+      display: flex;
+      a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+      }
+      li {
+        margin: 10px;
+        list-style: none;
+      }
+    }
+    &_container {
+      display: flex;
+      align-items: center;
+      width: 1200px;
+      justify-content: space-between;
+      height: 60px;
+
+      img {
+        height: 70px;
+      }
+
+    }
   }
   .container {
     width: 1200px;
     margin: auto;
-    padding-top: 10px;
+    padding-top: 60px;
     .home_page {
       display: grid;
       grid-template-columns: 1fr 3fr;
@@ -62,7 +89,7 @@
         &_container {
           width: 90%;
           position: sticky;
-          top: 20px;
+          top: 62px;
         }
       }
       .movies {
@@ -229,6 +256,7 @@
         width: 100%;
         height: 100%;
         backdrop-filter: blur(2px);
+        box-shadow: inset 0px -125px 68px 0 #1b1b1b;
       }
 
       &::after {

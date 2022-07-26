@@ -80,7 +80,6 @@ export const moviesSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getMovies.fulfilled, (state, action) => {
-            console.log('action=>' , action)
             if(!state.loadNewMovies) {
                 state.movies = [...state.movies,...action.payload.results]
             }

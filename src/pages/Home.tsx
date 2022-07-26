@@ -2,7 +2,7 @@ import React from 'react'
 import Filter from "./components/Filter";
 import Movies from "./components/Movies";
 
-const Home = () => {
+const MoviesPage = () => {
     return (
         <div className="container">
             <div className="home_page">
@@ -13,4 +13,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default MoviesPage

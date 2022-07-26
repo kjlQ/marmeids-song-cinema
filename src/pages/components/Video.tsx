@@ -27,7 +27,7 @@ const Video = (props:any) => {
     },[])
     return (
         <div className='videos'>
-            <h1>Original Trailer</h1>
+            <h1>Official Trailer</h1>
             {/*{video.map((item:string)=><iframe width="715" height="400" src={`https://www.youtube.com/embed/${item}`}></iframe>)}*/}
             {video ?
                 <iframe width="715" height="400" src={`https://www.youtube.com/embed/${video}?autoplay=1&mute=1`}>
