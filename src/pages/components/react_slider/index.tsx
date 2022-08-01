@@ -4,27 +4,46 @@ import './styles.scss'
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import SliderInfo from "../SliderInfo";
 
 interface IProps {
-    trend : any
+    items : any,
+    slidesToShow:number,
 }
 
-const SimpleSlider:FC<IProps> = ({trend}) => {
+const SlickSlider:FC<IProps> = ({items,slidesToShow}) => {
     const settings = {
         dots: true,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
+        infinite: true,
+        speed: 200,
+        slidesToShow: slidesToShow,
+        slidesToScroll: 1,
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />
     };
     return (
         <div className='slider'>
-            <h2>Popular</h2>
             <Slider {...settings}>
-                {trend.map((item:any)=><div className='slider-item'><img className='backdrop' src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`} alt=""/><span>{item.original_title}</span></div>)}
+                {items.map((item:any)=><SliderInfo slidesToShow={slidesToShow} {...item} />)}
             </Slider>
+
         </div>
     );
 }
 
-export default SimpleSlider
+export default SlickSlider
+
+
+function SampleNextArrow(props:any) {
+    const { className, style, onClick } = props;
+    return (
+        <a onClick={onClick} className={'next'}>&#8250;</a>
+    );
+}
+
+function SamplePrevArrow(props:any) {
+    const { className, style, onClick } = props;
+    return (
+        <a onClick = {onClick} className={'previous'}>&#8249;</a>
+    );
+}

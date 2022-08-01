@@ -1,34 +1,78 @@
 .slider {
+  padding:0 0 60px;
   .slick-slide {
     display: flex !important;
     justify-content: center !important;
   }
+  .slick-list {
+    width: 1000px;
+    margin: auto;
+  }
 }
 .slider-item {
   position: relative;
-  &:hover {
-    transition: 0.5s;
-
-    .backdrop {
-      filter: blur(2px);
-    }
-    span {
-      opacity: 1;
-      transition: 0.3s;
-    }
-  }
+  transition: 0.5s;
   .backdrop {
     width: 1000px;
     position: relative;
     transition: 0.3s;
-
+    //filter: blur(2px);
   }
-  span {
+  .info {
     transition: 0.3s;
-    opacity: 0;
+    opacity: 1;
     position: absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
+    top: 22%;
+    left: 5%;
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    .title {
+      font-size: 25px;
+      font-weight: bold;
+      margin: 0 0 10px;
+    }
+    .overview {
+      width: 50%;
+      font-size: 15px;
+    }
+    button {
+      padding: 5px 15px;
+      border-radius: 15px;
+      font-size: 17px;
+      font-weight: bold;
+      border: 1px solid #1b1b1b;
+      margin: 10px;
+      background-color: #fff;
+      cursor: pointer;
+    }
   }
+  .star {
+    display: none;
+  }
+}
+
+.previous , .next {
+  text-decoration: none;
+  display: inline-block;
+  padding: 50px 16px;
+  background-color: #000;
+  color: #fff;
+  opacity: 0.5;
+  transition: .3s;
+  font-size: 40px ;
+  position: absolute;
+  z-index: 2;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+}
+.previous {
+  top: 35%;
+  left: 100px;
+}
+.next {
+  top: 35%;
+  right: 100px;
 }
