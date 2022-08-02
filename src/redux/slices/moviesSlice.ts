@@ -87,6 +87,7 @@ export const moviesSlice = createSlice({
                 state.movies = action.payload.results
                 state.loadNewMovies = false
             }
+            console.log(action)
             state.total_pages = action.payload.total_pages
             state.loading = false
         })

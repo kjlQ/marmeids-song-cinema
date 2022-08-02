@@ -1,13 +1,12 @@
 import React, {Component, FC} from "react";
 import Slider from "react-slick";
 import './styles.scss'
+import {ISliderItem} from '../../../types/types'
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import SliderInfo from "../SliderInfo";
 
 interface IProps {
-    items : any,
+    items : ISliderItem[],
     slidesToShow:number,
 }
 
@@ -24,7 +23,7 @@ const SlickSlider:FC<IProps> = ({items,slidesToShow}) => {
     return (
         <div className='slider'>
             <Slider {...settings}>
-                {items.map((item:any)=><SliderInfo slidesToShow={slidesToShow} {...item} />)}
+                {items.map((item:ISliderItem)=><SliderInfo slidesToShow={slidesToShow} {...item} />)}
             </Slider>
 
         </div>

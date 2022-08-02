@@ -7,7 +7,7 @@ import Video from "./components/Video";
 
 const MoviePage = () => {
     const [state , setState] = useState<IDetail>()
-    let {id} = useParams();
+    let {id} = useParams<string>();
     useEffect(()=> {
         const fetchFunction = async () => {
             const response = await axios.get<IDetail>(`https://api.themoviedb.org/3/movie/${id}?api_key=6071c7f776d0e35fb4f1d54ec4be7272`)

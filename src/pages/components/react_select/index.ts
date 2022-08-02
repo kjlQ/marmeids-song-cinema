@@ -1,4 +1,5 @@
-export const options:any = [
+import {IOptions} from '../../../types/types'
+export const options:IOptions[] = [
     { value: 'popularity.desc', label: 'Popularity 🡣' },
     { value: 'popularity.asc', label: 'Popularity 🡡' },
     { value: 'release_date.desc', label: 'Release date 🡣 ' },

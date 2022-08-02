@@ -81,6 +81,10 @@
       grid-template-columns: 1fr 3fr;
       margin-top: 20px;
       .filter {
+        .sort-none__control {
+          opacity: 0.5;
+          pointer-events: none;
+        }
         .search_input {
           position: relative;
           input {

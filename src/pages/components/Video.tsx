@@ -1,27 +1,19 @@
-import React, {useEffect, useState} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 import axios from 'axios'
+import {IVideoResults} from '../../types/types'
 
-interface IResults {
-    id: string
-    iso_639_1: string
-    iso_3166_1: string
-    key: string
-    name: string
-    official: boolean
-    published_at: string
-    site: string
-    size: number
-    type: string
+interface IVideo {
+    id?:string
 }
 
-const Video = (props:any) => {
+const Video:FC<IVideo> = ({id}) => {
     const [video,setVideo] = useState<string>()
     useEffect(() => {
         const fetchData = async () => {
-            const results = await axios.get<any>(`https://api.themoviedb.org/3/movie/${props.id}/videos?api_key=6071c7f776d0e35fb4f1d54ec4be7272`).then(res=>res.data.results)
+            const results = await axios.get<any>(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=6071c7f776d0e35fb4f1d54ec4be7272`).then(res=>res.data.results)
             // results.map((item:any)=>setVideo((current:any)=>[...current , item.key]))
             // for only one trailer
-            results.map((item:any)=>setVideo((current:any)=>item.key))
+            results.map((item:IVideoResults)=>setVideo((item.key)))
         }
         fetchData()
     },[])
