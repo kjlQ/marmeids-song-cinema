@@ -16,7 +16,7 @@ const SliderInfo:FC<ISlider> = ({original_title,backdrop_path,overview,id,vote_a
 
     return (
         <div className='slider-item'>
-            {slidesToShow < 2 && innerWidth > 620 ?
+            {slidesToShow < 2 ?
                 <>
                     <img className='backdrop' src={`https://image.tmdb.org/t/p/original/${backdrop_path}`} alt=""/>
                     <div className="info">
