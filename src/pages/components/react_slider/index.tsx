@@ -8,33 +8,70 @@ import SliderInfo from "../SliderInfo";
 interface IProps {
     items : ISliderItem[],
     slidesToShow:number,
+    responsive:string,
 }
 
-const SlickSlider:FC<IProps> = ({items,slidesToShow}) => {
+const SlickSlider:FC<IProps> = ({items,slidesToShow,responsive}) => {
 
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 200,
-        slidesToShow: slidesToShow,
-        slidesToScroll: 1,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
-        responsive: [
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                }
-            },
-        ]
-    };
+    const [settings , setSettings] = useState<any>({})
+
+    useEffect(()=>{
+        if(responsive === 'big') {
+            setSettings({
+                dots: true,
+                infinite: true,
+                speed: 200,
+                slidesToShow: slidesToShow,
+                slidesToScroll: 1,
+                nextArrow: <SampleNextArrow />,
+                prevArrow: <SamplePrevArrow />,
+                responsive: [
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            infinite: false,
+                            dots:false,
+                        }
+                    },
+                    {
+                        breakpoint: 460,
+                        settings: {
+                            slidesToShow: 1,
+                            infinite: false,
+                            dots:false,
+                        }
+                    },
+                ]})
+        }
+        else if(responsive==='small'){
+            setSettings({
+                dots: true,
+                infinite: true,
+                speed: 200,
+                slidesToShow: slidesToShow,
+                slidesToScroll: 1,
+                nextArrow: <SampleNextArrow />,
+                prevArrow: <SamplePrevArrow />,
+                responsive: [
+                    {
+                        breakpoint: 1200,
+                        settings: {
+                            mobileFirst:true,//add this one
+                            slidesToShow: 3,
+                            dots:false,
+                        }
+                    },
+                ]
+            })
+        }
+    },[])
+
     return (
         <div className='slider'>
             <Slider {...settings}>
                 {items.map((item:ISliderItem)=><SliderInfo slidesToShow={slidesToShow} {...item} />)}
             </Slider>
-
         </div>
     );
 }

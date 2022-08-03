@@ -21,9 +21,9 @@ const MainPage = () => {
     return(
         <div className="container">
             <h2 className='main_title'>Trending</h2>
-            <SlickSlider items={trend} slidesToShow={1} />
-            {/*<h2 className='main_title'>Popular</h2>*/}
-            {/*<SlickSlider items={popular} slidesToShow={4} />*/}
+            <SlickSlider items={trend} slidesToShow={1} responsive={'big'}/>
+            <h2 className='main_title'>Popular</h2>
+            <SlickSlider items={popular} slidesToShow={4} responsive={'small'} />
         </div>
 
     )
