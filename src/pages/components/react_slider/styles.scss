@@ -1,5 +1,6 @@
 @import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
+@import "../../../scss/mixins";
 .slider {
   padding:0 0 60px;
   .slick-slide {
@@ -7,7 +8,7 @@
     justify-content: center !important;
   }
   .slick-list {
-    width: 1000px;
+    max-width: 1000px;
     margin: auto;
   }
 }
@@ -19,6 +20,14 @@
     position: relative;
     transition: 0.3s;
     //filter: blur(2px);
+
+    @include desktop-sm {
+      width: 800px;
+    }
+
+    @include tablet {
+      width: 600px;
+    }
   }
   .info {
     transition: 0.3s;
@@ -73,8 +82,14 @@
 .previous {
   top: 35%;
   left: 100px;
+  @include tablet-pc {
+    display: none;
+  }
 }
 .next {
   top: 35%;
   right: 100px;
+  @include tablet-pc {
+    display: none;
+  }
 }

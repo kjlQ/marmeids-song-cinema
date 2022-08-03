@@ -1,30 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {IMovie} from '../../types/types'
+import {initialStateType , params_type , fetchType} from '../../types/types'
 import axios from "axios";
-
-
-interface fetchType {
-    page: number,
-    results: IMovie[],
-    total_pages: number,
-    total_results: number,
-}
-
-interface params_type {
-    page: number,
-    sort_by: string,
-    search_value: string,
-}
-
-interface initialStateType {
-    movies: IMovie[],
-    page: number,
-    sort_by: string,
-    loadNewMovies:boolean,
-    search_value:string,
-    total_pages:number,
-    loading: boolean,
-}
 
 export const getMovies:any = createAsyncThunk(
 'posts/getMovies',

@@ -92,3 +92,25 @@ export interface ISliderItem {
 }
 
 
+export interface fetchType {
+    page: number,
+    results: IMovie[],
+    total_pages: number,
+    total_results: number,
+}
+
+export interface params_type {
+    page: number,
+    sort_by: string,
+    search_value: string,
+}
+
+export interface initialStateType {
+    movies: IMovie[],
+    page: number,
+    sort_by: string,
+    loadNewMovies:boolean,
+    search_value:string,
+    total_pages:number,
+    loading: boolean,
+}
