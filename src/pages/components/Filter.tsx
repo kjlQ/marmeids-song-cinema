@@ -41,6 +41,7 @@ const Filter = () => {
                 <Select
                     classNamePrefix={search_value ? 'sort-none' : 'filter'}
                     defaultValue={selectedOption}
+                    // @ts-ignore
                     onChange={setSelectedOption}
                     options={options}
                 />
