@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, {FC , useEffect , useState} from 'react'
 import {Link} from 'react-router-dom'
 import Movie from "./Movie";
 
@@ -13,9 +13,10 @@ interface ISlider {
 }
 
 const SliderInfo:FC<ISlider> = ({original_title,backdrop_path,overview,id,vote_average ,poster_path,slidesToShow}) => {
+
     return (
         <div className='slider-item'>
-            {slidesToShow < 2 ?
+            {slidesToShow < 2 && innerWidth > 620 ?
                 <>
                     <img className='backdrop' src={`https://image.tmdb.org/t/p/original/${backdrop_path}`} alt=""/>
                     <div className="info">

@@ -1,4 +1,4 @@
-import React, {Component, FC} from "react";
+import React, {Component, FC, useEffect, useState} from "react";
 import Slider from "react-slick";
 import './styles.scss'
 import {ISliderItem} from '../../../types/types'
@@ -11,6 +11,7 @@ interface IProps {
 }
 
 const SlickSlider:FC<IProps> = ({items,slidesToShow}) => {
+
     const settings = {
         dots: true,
         infinite: true,
@@ -18,7 +19,15 @@ const SlickSlider:FC<IProps> = ({items,slidesToShow}) => {
         slidesToShow: slidesToShow,
         slidesToScroll: 1,
         nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />
+        prevArrow: <SamplePrevArrow />,
+        responsive: [
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                }
+            },
+        ]
     };
     return (
         <div className='slider'>
