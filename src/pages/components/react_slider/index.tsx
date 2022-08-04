@@ -8,64 +8,92 @@ import SliderInfo from "../SliderInfo";
 interface IProps {
     items : ISliderItem[],
     slidesToShow:number,
-    responsive:string,
+    res:string
 }
 
-const SlickSlider:FC<IProps> = ({items,slidesToShow,responsive}) => {
+const SlickSlider:FC<IProps> = ({items,slidesToShow,res}) => {
 
     const [settings , setSettings] = useState<any>({})
 
     useEffect(()=>{
-        if(responsive === 'big') {
+        if(res==='big') {
             setSettings({
                 dots: true,
-                infinite: true,
+                infinite: false,
                 speed: 200,
                 slidesToShow: slidesToShow,
                 slidesToScroll: 1,
                 nextArrow: <SampleNextArrow />,
                 prevArrow: <SamplePrevArrow />,
-                responsive: [
+                responsive:[
                     {
-                        breakpoint: 600,
+                        breakpoint:600,
                         settings: {
                             slidesToShow: 2,
-                            infinite: false,
-                            dots:false,
+                            slidesToScroll:2,
+                            infinite: true,
+                            dots: true
                         }
                     },
                     {
-                        breakpoint: 460,
+                        breakpoint:420,
                         settings: {
                             slidesToShow: 1,
-                            infinite: false,
-                            dots:false,
+                            slidesToScroll:1,
+                            infinite: true,
+                            dots: false
                         }
-                    },
-                ]})
+                    }
+                ]
+            })
         }
-        else if(responsive==='small'){
+        if(res==='small') {
             setSettings({
                 dots: true,
-                infinite: true,
+                infinite: false,
                 speed: 200,
                 slidesToShow: slidesToShow,
                 slidesToScroll: 1,
                 nextArrow: <SampleNextArrow />,
                 prevArrow: <SamplePrevArrow />,
-                responsive: [
+                responsive:[
                     {
-                        breakpoint: 1200,
+                        breakpoint:1200,
                         settings: {
-                            mobileFirst:true,//add this one
                             slidesToShow: 3,
-                            dots:false,
+                            infinite: true,
+                            dots: true
                         }
                     },
+                    {
+                        breakpoint:600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll:2,
+                            infinite: true,
+                            dots: false
+                        }
+                    },
+                    {
+                        breakpoint:420,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll:1,
+                            infinite: true,
+                            dots: false
+                        }
+                    }
                 ]
             })
         }
     },[])
+
+
+    if(!settings.speed) {
+        return (
+            <div>Wait</div>
+        )
+    }
 
     return (
         <div className='slider'>

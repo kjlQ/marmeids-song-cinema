@@ -10,13 +10,14 @@ import { getMovies } from './redux/slices/moviesSlice'
 
 import {useAppSelector} from "./hook"
 
+
+
 import {useDispatch } from 'react-redux'
 import Header from "./pages/components/Header";
 
 function App() {
 
     const [theme , setTheme] = useState('black')
-
 
 
     return (

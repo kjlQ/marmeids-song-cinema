@@ -46,6 +46,10 @@
     .overview {
       width: 50%;
       font-size: 15px;
+      @include tablet {
+        height: 107px;
+        overflow: hidden;
+      }
     }
     button {
       padding: 5px 15px;
